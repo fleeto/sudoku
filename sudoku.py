@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import json
 
@@ -38,13 +38,13 @@ def get_block(matrix, row, col):
 
 def print_matrix(matrix):
     for line in matrix:
-        print line
+        print(line)
 
 
 def get_possible_answer(matrix):
     full_line = set(range(1, 10))
     # test every cell
-    min_possible = [0, 0, 9, range(1, 10)]
+    min_possible = [0, 0, 9, list(range(1, 10))]
     settled = True
     count = 0
     for x in range(0, 9):
@@ -79,29 +79,16 @@ def test_matrix(matrix):
         (settled, x, y, count, values) = get_possible_answer(current_matrix)
         if settled:
             print_matrix(current_matrix)
-            print 'total steps %d, max stack depth: %d' % (steps, max_depth)
+            print('total steps %d, max stack depth: %d' % (steps, max_depth))
             return
         for value in values:
             current_matrix[x][y] = value
             # print json.dumps(current_matrix)
             stack.append(json.dumps(current_matrix))
         if steps % 100 == 0:
-            print "steps: %d  stack: %d" % (steps, len(stack))
+            print("steps: %d  stack: %d" % (steps, len(stack)))
 
     print_matrix(current_matrix)
-
-# quiz = [
-# [6, 0, 0, 0, 0, 0, 0, 9, 7],
-#     [3, 9, 0, 0, 0, 8, 0, 2, 0],
-#     [0, 0, 0, 0, 2, 0, 0, 0, 0],
-#     [0, 8, 0, 5, 0, 9, 0, 0, 0],
-#     [0, 0, 9, 0, 0, 0, 8, 0, 0],
-#     [0, 0, 0, 6, 0, 0, 0, 4, 0],
-#     [0, 0, 0, 0, 4, 0, 0, 0, 0],
-#     [0, 1, 0, 7, 0, 0, 0, 6, 5],
-#     [4, 5, 0, 0, 0, 0, 0, 0, 3],
-# ]
-
 # so hard??
 quiz = [
     [8, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -114,17 +101,5 @@ quiz = [
     [0, 0, 8, 5, 0, 0, 0, 1, 0],
     [0, 9, 0, 0, 0, 0, 4, 0, 0],
 ]
-
-# quiz = [
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-#     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-# ]
 
 test_matrix(quiz)
