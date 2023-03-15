@@ -61,7 +61,6 @@ def get_possible_answer(matrix):
             if possible_count < min_possible[2]:
                 min_possible = [x, y, possible_count, possible_values]
 
-    # print "None-Zero count is %d" % count
     return settled, min_possible[0], min_possible[1], min_possible[2], min_possible[3]
 
 
